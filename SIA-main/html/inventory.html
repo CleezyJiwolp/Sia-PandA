@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management - P&A Lab Management System</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../src/img/logopanda.png" alt="panda2" class="panda-img">
+                    <div>
+                        <h2>P&A Lab</h2>
+                        <p>Management System</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="requests.html" class="nav-item">
+                    <span class="nav-icon">📋</span>
+                    <span>Test Requests</span>
+                    <span class="nav-badge">12</span>
+                </a>
+                <a href="results.html" class="nav-item">
+                    <span class="nav-icon">🧪</span>
+                    <span>Test Results</span>
+                </a>
+                <a href="inventory.html" class="nav-item active">
+                    <span class="nav-icon">📦</span>
+                    <span>Inventory</span>
+                    <span class="nav-badge">3</span>
+                </a>
+                <a href="transactions.html" class="nav-item">
+                    <span class="nav-icon">💰</span>
+                    <span>Transactions</span>
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span>Reports & Analytics</span>
+                </a>
+                <a href="users.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>User Management</span>
+                </a>
+                <a href="audit.html" class="nav-item">
+                    <span class="nav-icon">📝</span>
+                    <span>Audit Trail</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="notifications.html" class="nav-item">
+                    <span class="nav-icon">🔔</span>
+                    <span>Notifications</span>
+                </a>
+                <a href="#" class="nav-item logout-btn">
+                    <span class="nav-icon">🚪</span>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>P and A Laboratory</h1>
+                    <p>Digos City, Davao del Sur, Philippines</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="addItemBtn">+ Add New Item</button>
+                    <div class="user-info">
+                        <div>
+                            <p class="user-name">Maria Santos</p>
+                            <p class="user-role">Admin</p>
+                        </div>
+                        <div class="user-avatar">MS</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="page-header">
+                    <h2>Inventory Management</h2>
+                    <p>Monitor and track laboratory supplies with full accountability</p>
+                </div>
+
+                <!-- Low Stock Alert -->
+                <div id="lowStockAlert" class="alert alert-warning" style="display: none;">
+                    <span class="alert-count">0</span> items are running low on stock. Please restock these items soon.
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="search-filter-bar">
+                    <div class="search-box">
+                        <input type="text" id="inventorySearch" placeholder="Search inventory items...">
+                    </div>
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="All Categories">All Categories</option>
+                        <option value="Reagents">Reagents</option>
+                        <option value="Medical Supplies">Medical Supplies</option>
+                        <option value="Consumables">Consumables</option>
+                        <option value="Equipment">Equipment</option>
+                    </select>
+                </div>
+
+                <!-- Inventory List -->
+                <div id="inventoryList" class="inventory-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/inventory.js"></script>
+</body>
+</html>
+

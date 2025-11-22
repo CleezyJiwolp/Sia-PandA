@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Trail - P&A Lab Management System</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../src/img/logopanda.png" alt="panda2" class="panda-img">
+                    <div>
+                        <h2>P&A Lab</h2>
+                        <p>Management System</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="requests.html" class="nav-item">
+                    <span class="nav-icon">📋</span>
+                    <span>Test Requests</span>
+                    <span class="nav-badge">12</span>
+                </a>
+                <a href="results.html" class="nav-item">
+                    <span class="nav-icon">🧪</span>
+                    <span>Test Results</span>
+                </a>
+                <a href="inventory.html" class="nav-item">
+                    <span class="nav-icon">📦</span>
+                    <span>Inventory</span>
+                    <span class="nav-badge">3</span>
+                </a>
+                <a href="transactions.html" class="nav-item">
+                    <span class="nav-icon">💰</span>
+                    <span>Transactions</span>
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span>Reports & Analytics</span>
+                </a>
+                <a href="users.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>User Management</span>
+                </a>
+                <a href="audit.html" class="nav-item active">
+                    <span class="nav-icon">📝</span>
+                    <span>Audit Trail</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="notifications.html" class="nav-item">
+                    <span class="nav-icon">🔔</span>
+                    <span>Notifications</span>
+                </a>
+                <a href="#" class="nav-item logout-btn">
+                    <span class="nav-icon">🚪</span>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>P and A Laboratory</h1>
+                    <p>Digos City, Davao del Sur, Philippines</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="exportAuditLog">📥 Export Audit Log</button>
+                    <div class="user-info">
+                        <div>
+                            <p class="user-name">Maria Santos</p>
+                            <p class="user-role">Admin</p>
+                        </div>
+                        <div class="user-avatar">MS</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content">
+                <div class="page-header">
+                    <h2>Audit Trail & Activity Log</h2>
+                    <p>Complete system activity history for accountability and transparency</p>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div>
+                                <p class="card-label">Today's Activities</p>
+                                <h3 id="todayActivities">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div>
+                                <p class="card-label">Inventory Changes</p>
+                                <h3 id="inventoryChanges">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div>
+                                <p class="card-label">Test Activities</p>
+                                <h3 id="testActivities">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div>
+                                <p class="card-label">Transactions</p>
+                                <h3 id="transactions">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div>
+                                <p class="card-label">User Logins</p>
+                                <h3 id="userLogins">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="search-filter-bar">
+                    <div class="search-box">
+                        <input type="text" id="auditSearch" placeholder="Search by action, user, module, or description...">
+                    </div>
+                    <select id="moduleFilter" class="filter-select">
+                        <option value="All Modules">All Modules</option>
+                        <option value="Inventory">Inventory</option>
+                        <option value="Transaction">Transaction</option>
+                        <option value="Test Requests">Test Requests</option>
+                        <option value="User Management">User Management</option>
+                        <option value="Authentication">Authentication</option>
+                    </select>
+                </div>
+
+                <!-- Activity Timeline -->
+                <div class="audit-section">
+                    <h3>Activity Timeline</h3>
+                    <div id="auditLogsList" class="audit-logs-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/audit.js"></script>
+</body>
+</html>
+

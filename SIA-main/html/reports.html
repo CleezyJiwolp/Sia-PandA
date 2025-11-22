@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics - P&A Lab Management System</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../src/img/logopanda.png" alt="panda2" class="panda-img">
+                    <div>
+                        <h2>P&A Lab</h2>
+                        <p>Management System</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="requests.html" class="nav-item">
+                    <span class="nav-icon">📋</span>
+                    <span>Test Requests</span>
+                    <span class="nav-badge">12</span>
+                </a>
+                <a href="results.html" class="nav-item">
+                    <span class="nav-icon">🧪</span>
+                    <span>Test Results</span>
+                </a>
+                <a href="inventory.html" class="nav-item">
+                    <span class="nav-icon">📦</span>
+                    <span>Inventory</span>
+                    <span class="nav-badge">3</span>
+                </a>
+                <a href="transactions.html" class="nav-item">
+                    <span class="nav-icon">💰</span>
+                    <span>Transactions</span>
+                </a>
+                <a href="reports.html" class="nav-item active">
+                    <span class="nav-icon">📈</span>
+                    <span>Reports & Analytics</span>
+                </a>
+                <a href="users.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>User Management</span>
+                </a>
+                <a href="audit.html" class="nav-item">
+                    <span class="nav-icon">📝</span>
+                    <span>Audit Trail</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="notifications.html" class="nav-item">
+                    <span class="nav-icon">🔔</span>
+                    <span>Notifications</span>
+                </a>
+                <a href="#" class="nav-item logout-btn">
+                    <span class="nav-icon">🚪</span>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>P and A Laboratory</h1>
+                    <p>Digos City, Davao del Sur, Philippines</p>
+                </div>
+                <div class="header-right">
+                    <select id="dateFilter" class="filter-select">
+                        <option value="This Month" selected>This Month</option>
+                        <option value="Last Month">Last Month</option>
+                        <option value="This Year">This Year</option>
+                        <option value="Custom">Custom Range</option>
+                    </select>
+                    <div class="user-info">
+                        <div>
+                            <p class="user-name">Maria Santos</p>
+                            <p class="user-role">Admin</p>
+                        </div>
+                        <div class="user-avatar">MS</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content" id="reportsContent">
+                <div class="page-header">
+                    <h2>Reports & Analytics</h2>
+                    <p>Comprehensive data insights and export capabilities</p>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div>
+                                <p class="card-label">Total Tests</p>
+                                <h3 id="totalTests">0</h3>
+                                <p id="testChange" class="card-change positive">+0% vs last month</p>
+                            </div>
+                            <div class="card-icon blue">📊</div>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div>
+                                <p class="card-label">Revenue</p>
+                                <h3 id="totalRevenue">₱0K</h3>
+                                <p id="revenueChange" class="card-change positive">+0% vs last month</p>
+                            </div>
+                            <div class="card-icon green">💰</div>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div>
+                                <p class="card-label">Avg per Day</p>
+                                <h3 id="avgTestsPerDay">0 tests</h3>
+                                <p id="avgRevenuePerDay" class="card-change">₱0 daily</p>
+                            </div>
+                            <div class="card-icon purple">📈</div>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div>
+                                <p class="card-label">Low Stock Items</p>
+                                <h3 id="lowStockCount">0</h3>
+                                <p class="card-change negative">Action required</p>
+                            </div>
+                            <div class="card-icon red">📦</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Test Volume Trend</h3>
+                        <canvas id="testVolumeChart" width="600" height="300"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Revenue Trend</h3>
+                        <canvas id="revenueChart" width="600" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/reports.js"></script>
+</body>
+</html>
+

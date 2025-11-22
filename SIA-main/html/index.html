@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - P&A Lab Management System</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../src/img/logopanda.png" alt="panda2" class="panda-img">
+                    <div>
+                        <h2>P&A Lab</h2>
+                        <p>Management System</p>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item active">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="requests.html" class="nav-item">
+                    <span class="nav-icon">📋</span>
+                    <span>Test Requests</span>
+                    <span class="nav-badge">12</span>
+                </a>
+                <a href="results.html" class="nav-item">
+                    <span class="nav-icon">🧪</span>
+                    <span>Test Results</span>
+                </a>
+                <a href="inventory.html" class="nav-item">
+                    <span class="nav-icon">📦</span>
+                    <span>Inventory</span>
+                    <span class="nav-badge">3</span>
+                </a>
+                <a href="transactions.html" class="nav-item">
+                    <span class="nav-icon">💰</span>
+                    <span>Transactions</span>
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span>Reports & Analytics</span>
+                </a>
+                <a href="users.html" class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    <span>User Management</span>
+                </a>
+                <a href="audit.html" class="nav-item">
+                    <span class="nav-icon">📝</span>
+                    <span>Audit Trail</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="notifications.html" class="nav-item">
+                    <span class="nav-icon">🔔</span>
+                    <span>Notifications</span>
+                </a>
+                <a href="#" class="nav-item logout-btn">
+                    <span class="nav-icon">🚪</span>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>P and A Laboratory</h1>
+                    <p>Digos City, Davao del Sur, Philippines</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <div>
+                            <p class="user-name">Maria Santos</p>
+                            <p class="user-role">Admin</p>
+                        </div>
+                        <div class="user-avatar">MS</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="content" id="dashboard">
+                <div class="page-header">
+                    <h2>Dashboard Overview</h2>
+                    <p>Welcome back! Here's what's happening today.</p>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div>
+                                <p class="card-label">Test Requests Today</p>
+                                <h3 id="testRequestsToday">0</h3>
+                                <p class="card-change positive">+12%</p>
+                            </div>
+                            <div class="card-icon blue">📄</div>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div>
+                                <p class="card-label">Pending Results</p>
+                                <h3 id="pendingResults">0</h3>
+                                <p class="card-change urgent-text">0 urgent</p>
+                            </div>
+                            <div class="card-icon orange">⏰</div>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div>
+                                <p class="card-label">Low Stock Items</p>
+                                <h3 id="lowStockItems">0</h3>
+                                <p class="card-change negative">Need restock</p>
+                            </div>
+                            <div class="card-icon red">⚠️</div>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div>
+                                <p class="card-label">Today's Revenue</p>
+                                <h3 id="todayRevenue">₱0</h3>
+                                <p class="card-change positive">+8%</p>
+                            </div>
+                            <div class="card-icon green">💰</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Recent Test Requests</h3>
+                        <div id="recentRequests" class="recent-list">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Low Stock Alerts</h3>
+                        <div id="lowStockAlerts" class="alerts-list">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/utils.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>
+
