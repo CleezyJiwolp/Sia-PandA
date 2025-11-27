@@ -1,0 +1,123 @@
+/* ========== GENERAL PAGE STYLING ========== */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2a7aBe 0%, #98d2e0 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* ========== FORM CONTAINERS (Login & Signup) ========== */
+.form-container {
+    background: #ffffff;
+    width: 380px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Logo above the form */
+.form-container .logo{ text-align:center; margin-bottom:12px; }
+.form-container .logo img{ width:88px; height:auto; border-radius:10px; display:inline-block; border:2px solid rgba(42,122,190,0.08); }
+
+/* ========== LABELS AND INPUTS ========== */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+input:focus,
+select:focus {
+    border-color: #2a7aBe;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(42, 122, 190, 0.1);
+}
+
+/* ========== INPUT ICONS (Font Awesome) ========== */
+.input-icon {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-icon i {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #2a7aBe;
+    font-size: 16px;
+}
+
+.input-icon input,
+.input-icon select {
+    padding-left: 38px;
+}
+
+/* ========== BUTTONS ========== */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #2a7aBe;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #1e5a8a;
+}
+
+/* ========== LINK SECTIONS (Login & Signup) ========== */
+.form-link {
+    text-align: center;
+    margin-top: 15px;
+    color: #666;
+}
+
+.form-link a {
+    color: #2a7aBe;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-link a:hover {
+    text-decoration: underline;
+}
+.input-icon {
+  display: flex;
+  align-items: flex-start; /* align items at the top */
+  gap: 8px;
+}
+.input-icon i {
+  margin-top: -6px; /* move icon slightly up */
+  color: #2a7aBe;
+  font-size: 16px;
+}

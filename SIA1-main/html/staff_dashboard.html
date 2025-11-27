@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Staff Dashboard · P & A Lab</title>
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <aside class="sidebar sidebar-blue-gradient">
+        <div class="logo-row">
+            <img src="../src/img/panda2.png" alt="P & A Logo" class="sidebar-logo">
+           
+        </div>
+        <nav class="sidebar-nav">
+            <a href="staff_dashboard.html" class="nav-item active nav-item-active">
+                <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-chart-line"></i></span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a href="staff_test_requests.html" class="nav-item">
+                <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-vial"></i></span>
+                <span class="nav-label">Test Requests</span>
+            </a>
+            <a href="staff_lab_results.html" class="nav-item">
+                <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-flask"></i></span>
+                <span class="nav-label">Laboratory Results</span>
+            </a>
+            <a href="staff_inventory.html" class="nav-item">
+                <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-boxes-stacked"></i></span>
+                <span class="nav-label">Inventory</span>
+            </a>
+            <a href="staff_transactions.html" class="nav-item">
+                <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                <span class="nav-label">Transactions</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn sidebar-logout logout-btn-red" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span class="nav-label">Logout</span></button>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">P & A Lab</p>
+                <h1>Dashboard</h1>
+            </div>
+        </header>
+
+        <div class="content">
+            <section class="section-block">
+                <div class="overview-intro">
+                    <div>
+                        <h2>Dashboard Overview</h2>
+                        <p>Welcome back! Here's what's happening today.</p>
+                    </div>
+                    <div class="page-search">
+                        <input id="dashSearch" type="text" placeholder="Search patients, tests, inventory or requests..." onkeyup="filterEmpty()" />
+                    </div>
+                </div>
+
+                <div class="cards">
+                    <div class="card">
+                        <span class="card-icon-pill"><i class="fa-solid fa-vial"></i></span>
+                        <h3>Test Requests Today</h3>
+                        <p id="cardRequests">0</p>
+                        <span class="card-subtext text-up"><i class="fa-solid fa-plus"></i></span>
+                    </div>
+
+                    <div class="card">
+                        <span class="card-icon-pill"><i class="fa-solid fa-clock"></i></span>
+                        <h3>Pending Results</h3>
+                        <p id="cardPending">0</p>
+                    </div>
+
+                    <div class="card">
+                        <span class="card-icon-pill"><i class="fa-solid fa-boxes-stacked"></i></span>
+                        <h3>Low Stock Items</h3>
+                        <p id="cardLowStock">0</p>
+                    </div>
+
+                    <div class="card">
+                        <span class="card-icon-pill"><i class="fa-solid fa-money-bill-wave"></i></span>
+                        <h3>Today's Revenue</h3>
+                        <p id="cardRevenue">₱0</p>
+                    </div>
+                </div>
+
+                <div class="insight-panels">
+                    <article class="insight-card">
+                        <h3>Recent Test Requests</h3>
+                        <p class="empty-state"><i class="fa-solid fa-circle-exclamation"></i> No recent test requests.</p>
+                    </article>
+
+                    <article class="insight-card">
+                        <h3>Low Stock Alerts</h3>
+                        <p class="empty-state"><i class="fa-solid fa-circle-exclamation"></i> No low stock items.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section-block">
+                <div class="section-header">
+                    <h2>Transactions & Results</h2>
+                    <p class="section-subtitle">Monitor movement and link completed test results.</p>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Item / Service</th>
+                                <th>Type</th>
+                                <th>Result</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="empty-state-cell"><i class="fa-solid fa-circle-exclamation"></i> No transactions recorded.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        function logout() {
+            if (confirm('Logout?')) window.location.href = 'login.html';
+        }
+
+        function filterEmpty() { /* placeholder to keep consistent behavior */ }
+    </script>
+</body>
+
+</html>

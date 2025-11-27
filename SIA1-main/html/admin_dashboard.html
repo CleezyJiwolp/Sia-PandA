@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Admin Dashboard · P & A Lab</title>
+
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/dashboard.css" />
+<link rel="stylesheet" href="../css/admin_transactions.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<aside class="sidebar sidebar-blue-gradient">
+  <div class="logo-row">
+    <img src="../src/img/panda2.png" alt="P & A Logo" class="sidebar-logo" />
+    
+  </div>
+
+  <nav class="sidebar-nav">
+    <a href="admin_dashboard.html" class="nav-item active nav-item-active">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-chart-line"></i></span>
+      <span class="nav-label">Dashboard</span>
+    </a>
+
+    <a href="admin_patient_test.html" class="nav-item">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-vial"></i></span>
+      <span class="nav-label">Patient Test</span>
+    </a>
+
+    <a href="admin_laboratory_results.html" class="nav-item">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-flask"></i></span>
+      <span class="nav-label">Laboratory Results</span>
+    </a>
+
+    <a href="admin_inventory.html" class="nav-item">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-boxes-stacked"></i></span>
+      <span class="nav-label">Inventory</span>
+    </a>
+
+    <a href="admin_transactions.html" class="nav-item">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+      <span class="nav-label">Transactions</span>
+    </a>
+
+    <a href="admin_user_management.html" class="nav-item">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-users-gear"></i></span>
+      <span class="nav-label">User Management</span>
+    </a>
+
+    <a href="admin_activity_logs.html" class="nav-item">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-clock-rotate-left"></i></span>
+      <span class="nav-label">Activity Logs</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="logout-btn sidebar-logout logout-btn-red" onclick="logout()">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <span class="nav-label">Logout</span>
+    </button>
+  </div>
+</aside>
+
+<main class="main">
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <p class="eyebrow">P &amp; A LAB</p>
+      <h1>Dashboard</h1>
+    </div>
+    <div class="topbar-right">
+      <!-- reserved for user/profile actions -->
+    </div>
+  </header>
+
+  <div class="transactions-container">
+
+    <div class="stats-grid stats-grid-large">
+
+      <div class="stat-card">
+        <div class="stat-row">
+          <div class="stat-icon bg-blue"><i class="fa-solid fa-spinner"></i></div>
+          <div>
+            <h4>Pending Test Requests</h4>
+            <p class="stat-value" id="pendingTests">0</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-row">
+          <div class="stat-icon bg-green"><i class="fa-solid fa-check-circle"></i></div>
+          <div>
+            <h4>Completed Results</h4>
+            <p class="stat-value" id="completedResults">0</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-row">
+          <div class="stat-icon bg-red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <div>
+            <h4>Low Stock Items</h4>
+            <p class="stat-value" id="lowStock">0</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-row">
+          <div class="stat-icon bg-indigo"><i class="fa-solid fa-layer-group"></i></div>
+          <div>
+            <h4>Total Inventory Items</h4>
+            <p class="stat-value" id="totalInventory">0</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-row">
+          <div class="stat-icon bg-blue"><i class="fa-solid fa-user-check"></i></div>
+          <div>
+            <h4>Active Users</h4>
+            <p class="stat-value" id="activeUsers">0</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-row">
+          <div class="stat-icon bg-indigo"><i class="fa-solid fa-peso-sign"></i></div>
+          <div>
+            <h4>Revenue (Today)</h4>
+            <p class="stat-value" id="revenueToday">₱0.00</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="controls-card">
+      <div class="controls-left">
+        <div class="search-input">
+          <i class="fa fa-search"></i>
+          <input id="dashSearch" type="text" placeholder="Search by item, project, or metric..." />
+        </div>
+      </div>
+
+      <div class="controls-right">
+        <button class="btn ghost"><i class="fa-solid fa-file-export"></i> Export</button>
+      </div>
+    </div>
+
+    <section class="section-block">
+      <h2>Recent Activity</h2>
+      <div class="transactions-card">
+        <div class="empty-state" style="padding:18px;">
+          <p class="empty-desc">No recent activity</p>
+          <p class="muted" style="font-size:13px;">Just now</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="../js/admin_transactions.js"></script>
+
+</main>
+</body>
+</html>

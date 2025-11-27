@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Patient Test Requests · P & A Lab</title>
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+   <aside class="sidebar sidebar-blue-gradient">
+       <div class="logo-row">
+           <img src="../src/img/panda2.png" alt="P & A Logo" class="sidebar-logo">
+           <div class="sidebar-lab-title">
+               <span class="lab-title-main">P AND A</span><br>
+               <span class="lab-title-sub">LABORATORY</span>
+           </div>
+       </div>
+       <nav class="sidebar-nav">
+           <a href="staff_dashboard.html" class="nav-item">
+               <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-chart-line"></i></span>
+               <span class="nav-label">Dashboard</span>
+           </a>
+           <a href="staff_test_requests.html" class="nav-item active nav-item-active">
+               <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-vial"></i></span>
+               <span class="nav-label">Test Requests</span>
+           </a>
+           <a href="staff_lab_results.html" class="nav-item">
+               <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-flask"></i></span>
+               <span class="nav-label">Laboratory Results</span>
+           </a>
+           <a href="staff_inventory.html" class="nav-item">
+               <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-boxes-stacked"></i></span>
+               <span class="nav-label">Inventory</span>
+           </a>
+           <a href="staff_transactions.html" class="nav-item">
+               <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+               <span class="nav-label">Transactions</span>
+           </a>
+       </nav>
+       <div class="sidebar-footer">
+           <button class="logout-btn sidebar-logout logout-btn-red" onclick="logout()">
+               <i class="fa-solid fa-right-from-bracket"></i>
+               <span class="nav-label">Logout</span>
+           </button>
+       </div>
+   </aside>
+
+   <main class="main">
+       <header class="topbar">
+           <div>
+               <p class="eyebrow">P & A Lab</p>
+               <h1>Patient Test Requests</h1>
+           </div>
+       </header>
+
+       <div class="content">
+           <section class="section-block">
+               <div class="section-header">
+                   <h2><i class="fa-solid fa-vial"></i> Patient Test Requests</h2>
+                   <button class="btn btn-primary" onclick="openAddTestRequestModal()">
+                       <i class="fa-solid fa-plus"></i> New Request
+                   </button>
+               </div>
+
+               <div class="search-filter-bar">
+                   <input id="reqSearch" type="text" class="search-box" placeholder="Search by patient name or ID..." onkeyup="filterTestRequests(this.value)" />
+                   <select id="reqStatus" class="filter-select" onchange="filterByStatus(this.value)">
+                       <option value="">All Status</option>
+                       <option value="pending">Pending</option>
+                       <option value="processing">Processing</option>
+                       <option value="completed">Completed</option>
+                   </select>
+               </div>
+
+               <div class="stats-grid">
+                   <div class="stat-card">
+                       <h4>Pending</h4>
+                       <p id="pendingCount">0</p>
+                   </div>
+                   <div class="stat-card">
+                       <h4>Processing</h4>
+                       <p id="processingCount">0</p>
+                   </div>
+                   <div class="stat-card">
+                       <h4>Completed Today</h4>
+                       <p id="completedTodayCount">0</p>
+                   </div>
+               </div>
+
+               <div class="table-container">
+                   <table>
+                       <thead>
+                           <tr>
+                               <th>Request ID</th>
+                               <th>Patient Name</th>
+                               <th>Test Type</th>
+                               <th>Request Date</th>
+                               <th>Status</th>
+                               <th>Actions</th>
+                           </tr>
+                       </thead>
+                       <tbody id="testRequestsTable">
+                           <tr>
+                               <td colspan="6" class="empty-state-cell">
+                                   <i class="fa-solid fa-circle-exclamation"></i> No test requests found
+                               </td>
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
+           </section>
+       </div>
+   </main>
+
+   <script>
+       function logout() {
+           if (confirm('Logout?')) window.location.href = 'login.html';
+       }
+
+       function openAddTestRequestModal() {
+           alert('Add Test Request — integrate backend');
+       }
+
+       function filterTestRequests(q) {
+           q = q.trim().toLowerCase();
+           const t = document.getElementById('testRequestsTable');
+           const rows = t.getElementsByTagName('tr');
+           for (let r of rows) {
+               const text = r.textContent.toLowerCase();
+               r.style.display = text.includes(q) ? '' : 'none';
+           }
+       }
+
+       function filterByStatus(status) {
+           const t = document.getElementById('testRequestsTable');
+           const rows = t.getElementsByTagName('tr');
+           for (let r of rows) {
+               if (!status) {
+                   r.style.display = '';
+                   continue;
+               }
+               const badge = r.querySelector('.status-badge');
+               r.style.display = badge && badge.textContent.toLowerCase().includes(status) ? '' : 'none';
+           }
+       }
+   </script>
+</body>
+
+</html>

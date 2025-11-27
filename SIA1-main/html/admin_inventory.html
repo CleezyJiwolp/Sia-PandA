@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin · Inventory Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin_dashboard.css" />
+    <link rel="stylesheet" href="../css/admin_transactions.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+    <aside class="sidebar sidebar-blue-gradient">
+        <div class="logo-row">
+            <img src="../src/img/panda2.png" alt="P & A Logo" class="sidebar-logo">
+        </div>
+        <nav class="sidebar-nav">
+            <a href="admin_dashboard.html" class="nav-item">
+                <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-chart-line"></i></span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a href="admin_patient_test.html" class="nav-item">
+                <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-vial"></i></span>
+                <span class="nav-label">Patient Test</span>
+            </a>
+            <a href="admin_laboratory_results.html" class="nav-item">
+                <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-flask"></i></span>
+                <span class="nav-label">Laboratory Results</span>
+            </a>
+            <a href="admin_inventory.html" class="nav-item active nav-item-active">
+                <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-boxes-stacked"></i></span>
+                <span class="nav-label">Inventory</span>
+            </a>
+            <a href="admin_Transactions.html" class="nav-item">
+                <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-receipt"></i></span>
+                <span class="nav-label">Transactions</span>
+            </a>
+            <a href="admin_user_management.html" class="nav-item">
+                <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-users"></i></span>
+                <span class="nav-label">User Management</span>
+            </a>
+            <a href="admin_activity_logs.html" class="nav-item">
+                <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-list-check"></i></span>
+                <span class="nav-label">Activity Logs</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <button class="logout-btn sidebar-logout logout-btn-red" onclick="logout()" title="Logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="nav-label">Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">P & A Lab</p>
+                <h1>Inventory Management</h1>
+            </div>
+        </header>
+
+        <div class="content">
+            <section class="section-block">
+                <div class="section-header">
+                    <h2>Inventory Management</h2>
+                    <div class="section-actions">
+                        <button class="btn btn-primary" onclick="openInventoryModal()">
+                            <i class="fa-solid fa-plus"></i> Add Item
+                        </button>
+                    </div>
+                </div>
+
+                <div class="search-filter-bar">
+                    <input id="invSearch" type="text" class="search-box" placeholder="Search items..." onkeyup="filterInventory(this.value)" />
+                    <select id="invFilter" class="filter-select" onchange="filterInventoryByStatus(this.value)">
+                        <option value="">All Items</option>
+                        <option value="low">Low Stock</option>
+                        <option value="normal">Normal Stock</option>
+                    </select>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="icon-container">
+                            <i class="fa-solid fa-boxes"></i>
+                        </div>
+                        <div class="stat-title">Total Items</div>
+                        <div class="stat-value" id="statTotal">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon-container">
+                            <i class="fa-solid fa-triangle-exclamation" style="color:#dc3545"></i>
+                        </div>
+                        <div class="stat-title">Low Stock Items</div>
+                        <div class="stat-value" id="statLow" style="color:#dc3545">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon-container">
+                            <i class="fa-solid fa-ban" style="color:#dc3545"></i>
+                        </div>
+                        <div class="stat-title">Out of Stock</div>
+                        <div class="stat-value" id="statOut" style="color:#dc3545">0</div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item ID</th>
+                                <th>Item Name</th>
+                                <th>Category</th>
+                                <th>Current Stock</th>
+                                <th>Unit</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryTable">
+                            <tr>
+                                <td colspan="6" class="empty-state-cell"><i class="fa-solid fa-circle-exclamation"></i> No inventory items found</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <!-- Inventory Modal -->
+            <div id="modal-inventory" class="modal" role="dialog" aria-modal="true" aria-hidden="true" style="display:none;">
+                <div class="modal-card modal-content">
+                    <div class="modal-header">
+                        <h3>Add Inventory Item</h3>
+                        <button class="close-btn" onclick="closeModal('modal-inventory')">&times;</button>
+                    </div>
+                    <form id="inventoryForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Item Name</label>
+                                <input name="item_name" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <input name="category" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Current Stock</label>
+                                <input name="current_stock" type="number" min="0" value="0" required />
+                            </div>
+                            <div class="form-group">
+                                <label>Unit</label>
+                                <input name="unit" placeholder="pcs, box, ml" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select name="status">
+                                <option value="normal">Normal</option>
+                                <option value="low">Low</option>
+                                <option value="out">Out of Stock</option>
+                            </select>
+                        </div>
+                        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;">
+                            <button type="button" class="btn ghost" onclick="closeModal('modal-inventory')">Cancel</button>
+                            <button type="submit" class="btn">Save Item</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/admin_transactions.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lab Results · Admin</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="../css/dashboard.css" />
+<link rel="stylesheet" href="../css/admin_transactions.css" />
+
+</head>
+<body>
+<aside class="sidebar sidebar-blue-gradient">
+  <div class="logo-row">
+    <img src="../src/img/panda2.png" alt="P & A Logo" class="sidebar-logo" />
+    
+  </div>
+  <nav class="sidebar-nav">
+    <a href="admin_dashboard.html" class="nav-item">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-chart-line"></i></span>
+      <span class="nav-label">Dashboard</span>
+    </a>
+    <a href="admin_patient_test.html" class="nav-item">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-vial"></i></span>
+      <span class="nav-label">Patient Test</span>
+    </a>
+    <a href="admin_laboratory_results.html" class="nav-item active nav-item-active">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-flask"></i></span>
+      <span class="nav-label">Laboratory Results</span>
+    </a>
+    <a href="admin_inventory.html" class="nav-item">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-boxes-stacked"></i></span>
+      <span class="nav-label">Inventory</span>
+    </a>
+    <a href="admin_Transactions.html" class="nav-item">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-receipt"></i></span>
+      <span class="nav-label">Transactions</span>
+    </a>
+    <a href="admin_user_management.html" class="nav-item">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-users"></i></span>
+      <span class="nav-label">User Management</span>
+    </a>
+    <a href="admin_activity_logs.html" class="nav-item">
+      <span class="nav-icon nav-icon-blue"><i class="fa-solid fa-list-check"></i></span>
+      <span class="nav-label">Activity Logs</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="logout-btn sidebar-logout logout-btn-red" onclick="logout()" title="Logout">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <span class="nav-label">Logout</span>
+    </button>
+  </div>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">P & A Lab</p>
+      <h1>Laboratory Results</h1>
+    </div>
+    <!-- User profile quick actions and breadcrumb navigation can be added here for consistency -->
+  </header>
+
+  <div class="content" id="dashboard-content">
+    <section class="section-block">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-flask"></i> Laboratory Results</h2>
+        <div class="section-actions">
+          <button class="btn btn-primary" onclick="openUploadResultModal()">
+            <i class="fa-solid fa-file-arrow-up"></i> Upload Result
+          </button>
+        </div>
+      </div>
+
+      <div class="search-filter-bar">
+        <input class="search-box" placeholder="Search by patient name, test, or result ID..." />
+        <select class="filter-select" onchange="">
+          <option value="">All Results</option>
+          <option value="pending-review">Pending Review</option>
+          <option value="reviewed">Reviewed</option>
+          <option value="critical">Critical</option>
+        </select>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="icon-container"><i class="fa-solid fa-flask"></i></div>
+          <div class="stat-title">Total Results</div>
+          <div class="stat-value" id="statTotal">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon-container"><i class="fa-solid fa-exclamation-triangle" style="color: #f59e0b;"></i></div>
+          <div class="stat-title">Pending Review</div>
+          <div class="stat-value" id="statPendingReview" style="color: #f59e0b;">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon-container"><i class="fa-solid fa-triangle-exclamation" style="color:#dc3545"></i></div>
+          <div class="stat-title">Critical Results</div>
+          <div class="stat-value" id="statCritical" style="color:#dc3545">0</div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Result ID</th>
+              <th>Patient</th>
+              <th>Test Type</th>
+              <th>Status</th>
+              <th>Result Value</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="labResultsTable">
+            <tr>
+              <td colspan="7" class="empty-state-cell"><i class="fa-solid fa-circle-exclamation"></i> No laboratory results yet. Upload your first result!</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- Upload Result Modal -->
+  <div id="modal-upload-result" class="modal" role="dialog" aria-modal="true" aria-hidden="true" style="display:none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Upload Laboratory Result</h3>
+        <button class="close-btn" onclick="closeModal('modal-upload-result')">&times;</button>
+      </div>
+      <form id="uploadResultForm">
+        <div style="padding: 20px;">
+          <div class="form-group">
+            <label>Select Patient Test Request</label>
+            <select name="request_id" required>
+              <option value="">-- Choose a request --</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Result Status</label>
+              <select name="result_status" required>
+                <option value="pending-review">Pending Review</option>
+                <option value="normal">Normal</option>
+                <option value="abnormal">Abnormal</option>
+                <option value="critical">Critical</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Result Value</label>
+              <input name="result_value" placeholder="e.g., 120 mg/dL" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Remarks/Notes</label>
+            <textarea name="remarks" rows="3" placeholder="Add clinical remarks or findings..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Attach Result File (PDF/Image)</label>
+            <input type="file" name="result_file" accept=".pdf,.png,.jpg,.jpeg" />
+          </div>
+          <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px;">
+            <button type="button" class="btn ghost" onclick="closeModal('modal-upload-result')">Cancel</button>
+            <button type="submit" class="btn btn-primary">Upload Result</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/admin_transactions.js"></script>
+</main>
+</body>
+</html>
